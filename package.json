@@ -1,0 +1,10 @@
+{
+    "name": "tree-sitter-issue-2338",
+    "version": "0.0.1",
+    "dependencies": {
+        "web-tree-sitter": "0.20.8",
+        "tree-sitter-cli": "0.20.8",
+        "tree-sitter-typescript": "git+https://github.com/tree-sitter/tree-sitter-typescript.git#b1bf4825d9eaa0f3bdeb1e52f099533328acfbdf"
+    }
+}
+
