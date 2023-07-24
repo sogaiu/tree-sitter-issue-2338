@@ -6,16 +6,28 @@ Reproduction steps for
 ## Prerequisites
 
 * git
-* nodejs 19 or 20 with appropriate npm
+* nodejs 19 (or 20) with appropriate npm
 * typical dev Linux machine
 
 ## Instructions
+
+Ensure Nodejs 19 (or 20) is active in the current environment, e.g.
+
+```
+node --version
+```
+
+should produce something like `v19.9.0`.
 
 After cloning the repository to `/tmp`, invoke:
 
 ```
 sh -x doit.sh
 ```
+
+Note that the script does a variety of things including `npm --verbose
+install`, which for some reason is rather slow.  It may take multiple
+minutes so being patient might help.
 
 At the end of the output, should see something like:
 
