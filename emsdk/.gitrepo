@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/emscripten-core/emsdk
+	branch = main
+	commit = b6df670bdb7cc696804495306e99a604f6641b38
+	parent = b3f002aff33b57c0e204e411b886b7bd096fc933
+	method = merge
+	cmdver = 0.4.6
