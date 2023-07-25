@@ -42,6 +42,22 @@ fi
 
 cd "${start_dir}" || exit 1
 
+if [ ! -f tree-sitter/lib/binding_web/tree-sitter.wasm ]; then
+  cd tree-sitter && \
+    bash ./script/build-wasm --debug || \
+    exit 1
+fi
+
+cd "${start_dir}" || exit 1
+
+if [ ! -d node_modules/web-tree-sitter ]; then
+  cd node_modules && \
+    ln -s ../tree-sitter/lib/binding_web web-tree-sitter || \
+    exit 1
+fi
+
+cd "${start_dir}" || exit 1
+
 echo "just tsx is ok"
 node just-tsx.js
 

@@ -3,14 +3,12 @@ const path = require("path");
 
 ////////////////////////////////////////////////////////////////////////
 
-const tsx_wasm_path = 
+const tsx_wasm_path =
       path.join(process.cwd(),
                 "node_modules/tree-sitter-typescript/tsx",
                 "tree-sitter-tsx.wasm");
 
 async function tsx_do() {
-    const p = await Parser.init();
-
     const tsx_lang = await Parser.Language.load(tsx_wasm_path);
 
     const tsx_p = new Parser();
@@ -26,18 +24,14 @@ async function tsx_do() {
     console.log(tsx_tree.rootNode);
 }
 
-tsx_do();
-
 ////////////////////////////////////////////////////////////////////////
 
-const ts_wasm_path = 
+const ts_wasm_path =
       path.join(process.cwd(),
                 "node_modules/tree-sitter-typescript/typescript",
                 "tree-sitter-typescript.wasm");
 
 async function ts_do() {
-    const p = await Parser.init();
-
     const ts_lang = await Parser.Language.load(ts_wasm_path);
 
     const ts_p = new Parser();
@@ -52,5 +46,17 @@ async function ts_do() {
     console.log(ts_tree.rootNode);
 }
 
-ts_do();
+////////////////////////////////////////////////////////////////////////
+
+async function main() {
+    await Parser.init();
+
+    // XXX: if `await` is added below, will not get error
+    tsx_do();
+    //await tsx_do();
+
+    await ts_do();
+}
+
+main();
 

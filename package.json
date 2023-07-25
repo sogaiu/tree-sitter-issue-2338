@@ -2,7 +2,6 @@
     "name": "tree-sitter-issue-2338",
     "version": "0.0.1",
     "dependencies": {
-        "web-tree-sitter": "0.20.8",
         "tree-sitter-cli": "0.20.8",
         "tree-sitter-typescript": "0.20.1"
     }
