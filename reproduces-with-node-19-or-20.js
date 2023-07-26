@@ -3,60 +3,31 @@ const path = require("path");
 
 ////////////////////////////////////////////////////////////////////////
 
-const tsx_wasm_path =
-      path.join(process.cwd(),
-                "node_modules/tree-sitter-typescript/tsx",
-                "tree-sitter-tsx.wasm");
-
-async function tsx_do() {
-    const tsx_lang = await Parser.Language.load(tsx_wasm_path);
-
-    const tsx_p = new Parser();
-
-    tsx_p.setLanguage(tsx_lang);
-
-    const tsx_text = "<Element<T>>hi</Element>;\n" +
-                     "<Element<T> />;\n" +
-                     "<>fragment</>;";
-
-    const tsx_tree = tsx_p.parse(tsx_text);
-
-    console.log(tsx_tree.rootNode);
-}
+const initParser = Parser.init();
 
 ////////////////////////////////////////////////////////////////////////
 
-const ts_wasm_path =
-      path.join(process.cwd(),
-                "node_modules/tree-sitter-typescript/typescript",
-                "tree-sitter-typescript.wasm");
+const tsx_g =
+    (async function tsx_grammar() {
+        await initParser;
 
-async function ts_do() {
-    const ts_lang = await Parser.Language.load(ts_wasm_path);
+        const tsx_wasm_path =
+            path.join(process.cwd(),
+                      "node_modules/tree-sitter-typescript/tsx",
+                      "tree-sitter-tsx.wasm");
 
-    const ts_p = new Parser();
+        return await Parser.Language.load(tsx_wasm_path);
+    })();
 
-    ts_p.setLanguage(ts_lang);
+const ts_g =
+    (async function ts_grammar() {
+        await initParser;
 
-    const ts_text = "<A>b;\n" +
-                    "<C<D>>e.f;";
+        const ts_wasm_path =
+            path.join(process.cwd(),
+                      "node_modules/tree-sitter-typescript/typescript",
+                      "tree-sitter-typescript.wasm");
 
-    const ts_tree = ts_p.parse(ts_text);
-
-    console.log(ts_tree.rootNode);
-}
-
-////////////////////////////////////////////////////////////////////////
-
-async function main() {
-    await Parser.init();
-
-    // XXX: if `await` is added below, will not get error
-    tsx_do();
-    //await tsx_do();
-
-    await ts_do();
-}
-
-main();
+        return await Parser.Language.load(ts_wasm_path);
+    })();
 
