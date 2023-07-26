@@ -20,22 +20,22 @@ cd "${start_dir}" || exit 1
 PATH="$(pwd)/emsdk/upstream/emscripten:$PATH"
 export PATH
 
-ts_dir=node_modules/tree-sitter-typescript/typescript
-ts_wasm_path=${ts_dir}/tree-sitter-typescript.wasm
+julia_dir=node_modules/tree-sitter-julia
+julia_wasm_path=${julia_dir}/tree-sitter-julia.wasm
 
-if [ ! -f ${ts_wasm_path} ]; then
-  cd ${ts_dir} && \
+if [ ! -f ${julia_wasm_path} ]; then
+  cd ${julia_dir} && \
     $ts_path build-wasm || \
     exit 1
 fi
 
 cd "${start_dir}" || exit 1
 
-tsx_dir=node_modules/tree-sitter-typescript/tsx
-tsx_wasm_path=${tsx_dir}/tree-sitter-tsx.wasm
+python_dir=node_modules/tree-sitter-python
+python_wasm_path=${python_dir}/tree-sitter-python.wasm
 
-if [ ! -f ${tsx_wasm_path} ]; then
-  cd ${tsx_dir} && \
+if [ ! -f ${python_wasm_path} ]; then
+  cd ${python_dir} && \
     $ts_path build-wasm || \
     exit 1
 fi
@@ -57,12 +57,6 @@ if [ ! -d node_modules/web-tree-sitter ]; then
 fi
 
 cd "${start_dir}" || exit 1
-
-echo "just tsx is ok"
-node just-tsx.js
-
-echo "just typescript is ok"
-node just-typescript.js
 
 echo "both is not so ok"
 node reproduces-with-node-19-or-20.js

@@ -20,7 +20,7 @@ node --version
 should produce something like `v19.9.0`.
 
 After cloning the repository to `/tmp` (and switching to the
-`like-l10n-dev` branch), invoke:
+`repro-with-julia-and-python` branch), invoke:
 
 ```
 sh -x doit.sh
@@ -33,18 +33,18 @@ minutes so being patient might help.
 At the end of the output, should see something like:
 
 ```
-Aborted(Assertion failed: undefined symbol `tree_sitter_tsx_external_scanner_create`. perhaps a side module was not linked in? if this global was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment)
+Aborted(Assertion failed: undefined symbol `tree_sitter_julia_external_scanner_create`. perhaps a side module was not linked in? if this global was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment)
 /tmp/tree-sitter-issue-2338/tree-sitter/lib/binding_web/tree-sitter.js:480
      var e = new WebAssembly.RuntimeError(what);
              ^
 
-RuntimeError: Aborted(Assertion failed: undefined symbol `tree_sitter_tsx_external_scanner_create`. perhaps a side module was not linked in? if this global was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment)
+RuntimeError: Aborted(Assertion failed: undefined symbol `tree_sitter_julia_external_scanner_create`. perhaps a side module was not linked in? if this global was expected to arrive from a system library, try to build the MAIN_MODULE with EMCC_FORCE_STDLIBS=1 in the environment)
     at abort (/tmp/tree-sitter-issue-2338/tree-sitter/lib/binding_web/tree-sitter.js:480:14)
     at assert (/tmp/tree-sitter-issue-2338/tree-sitter/lib/binding_web/tree-sitter.js:286:7)
-    at reportUndefinedSymbols (/tmp/tree-sitter-issue-2338/tree-sitter/lib/binding_web/tree-sitter.js:1483:8)
+    at reportUndefinedSymbols (/tmp/tree-sitter-issue-2338/tree-sitter/lib/binding_web/tree-sitter.js:1485:8)
     at postInstantiation (/tmp/tree-sitter-issue-2338/tree-sitter/lib/binding_web/tree-sitter.js:1302:9)
     at /tmp/tree-sitter-issue-2338/tree-sitter/lib/binding_web/tree-sitter.js:1350:68
-    at async ts_grammar (/tmp/tree-sitter-issue-2338/reproduces-with-node-19-or-20.js:31:16)
+    at async python_grammar (/tmp/tree-sitter-issue-2338/reproduces-with-node-19-or-20.js:31:16)
 
 Node.js v19.9.0
 ```

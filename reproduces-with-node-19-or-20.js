@@ -7,27 +7,27 @@ const initParser = Parser.init();
 
 ////////////////////////////////////////////////////////////////////////
 
-const tsx_g =
-    (async function tsx_grammar() {
+const julia_g =
+    (async function julia_grammar() {
         await initParser;
 
-        const tsx_wasm_path =
+        const julia_wasm_path =
             path.join(process.cwd(),
-                      "node_modules/tree-sitter-typescript/tsx",
-                      "tree-sitter-tsx.wasm");
+                      "node_modules/tree-sitter-julia",
+                      "tree-sitter-julia.wasm");
 
-        return await Parser.Language.load(tsx_wasm_path);
+        return await Parser.Language.load(julia_wasm_path);
     })();
 
-const ts_g =
-    (async function ts_grammar() {
+const python_g =
+    (async function python_grammar() {
         await initParser;
 
-        const ts_wasm_path =
+        const python_wasm_path =
             path.join(process.cwd(),
-                      "node_modules/tree-sitter-typescript/typescript",
-                      "tree-sitter-typescript.wasm");
+                      "node_modules/tree-sitter-python",
+                      "tree-sitter-python.wasm");
 
-        return await Parser.Language.load(ts_wasm_path);
+        return await Parser.Language.load(python_wasm_path);
     })();
 
